@@ -1,0 +1,29 @@
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+out/
+.vscode/
+.idea/
+.vs/
+_TemporaryGeneratedFile_/
+.vscode/
+.DS_Store
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.user
+
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
