@@ -4,7 +4,10 @@
 
 #Todo:
 - Frontend
-- Auth (microservice with roles)
+- Auth
+-- refresh tokens
+-- sessions
+-- roles
 - Cache
 - Notification Service + RabbitMQ
 

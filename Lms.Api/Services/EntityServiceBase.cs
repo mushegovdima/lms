@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using Lms.Api.Db;
 using Lms.Api.Db.Models;
-using Lms.Api.Dto;
 using Lms.SDK.Common;
+using Lms.SDK.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lms.Api.Services;

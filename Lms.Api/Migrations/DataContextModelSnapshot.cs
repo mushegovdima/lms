@@ -23,7 +23,7 @@ namespace Lms.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Lms.Api.Db.Models.Cabinet", b =>
+            modelBuilder.Entity("Lms.Api.Db.Models.Course", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,28 +34,12 @@ namespace Lms.Api.Migrations
                     b.Property<long>("AuthorId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cabinets", (string)null);
-                });
-
-            modelBuilder.Entity("Lms.Api.Db.Models.Course", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
                     b.Property<long>("CabinetId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -64,9 +48,7 @@ namespace Lms.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CabinetId");
-
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Lms.Api.Db.Models.Lesson", b =>
@@ -98,11 +80,9 @@ namespace Lms.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CabinetId");
-
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Lessons", (string)null);
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("Lms.Api.Db.Models.LessonAnswer", b =>
@@ -137,11 +117,9 @@ namespace Lms.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CheckerId");
-
                     b.HasIndex("LessonId");
 
-                    b.ToTable("LessonAnswers", (string)null);
+                    b.ToTable("LessonAnswers");
                 });
 
             modelBuilder.Entity("Lms.Api.Db.Models.LessonField", b =>
@@ -175,81 +153,27 @@ namespace Lms.Api.Migrations
 
                     b.HasIndex("LessonId");
 
-                    b.ToTable("LessonFields", (string)null);
-                });
-
-            modelBuilder.Entity("Lms.Api.Db.Models.User", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("character varying(120)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("Lms.Api.Db.Models.Course", b =>
-                {
-                    b.HasOne("Lms.Api.Db.Models.Cabinet", "Cabinet")
-                        .WithMany()
-                        .HasForeignKey("CabinetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cabinet");
+                    b.ToTable("LessonFields");
                 });
 
             modelBuilder.Entity("Lms.Api.Db.Models.Lesson", b =>
                 {
-                    b.HasOne("Lms.Api.Db.Models.Cabinet", "Cabinet")
-                        .WithMany()
-                        .HasForeignKey("CabinetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Lms.Api.Db.Models.Course", "Course")
                         .WithMany("Lessons")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cabinet");
-
                     b.Navigation("Course");
                 });
 
             modelBuilder.Entity("Lms.Api.Db.Models.LessonAnswer", b =>
                 {
-                    b.HasOne("Lms.Api.Db.Models.User", "Checker")
-                        .WithMany()
-                        .HasForeignKey("CheckerId");
-
                     b.HasOne("Lms.Api.Db.Models.Lesson", "Lesson")
                         .WithMany()
                         .HasForeignKey("LessonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Checker");
 
                     b.Navigation("Lesson");
                 });

@@ -14,12 +14,10 @@ public class DataContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    public DbSet<Cabinet> Cabinets { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
     public DbSet<LessonField> LessonFields { get; set; }
     public DbSet<LessonAnswer> LessonAnswers { get; set; }
-    public DbSet<User> Users { get; set; }
 
 
     public override int SaveChanges()

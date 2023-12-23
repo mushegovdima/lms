@@ -1,26 +1,20 @@
-﻿using Lms.Api.Db;
-using Microsoft.EntityFrameworkCore;
-using Lms.Api.Services;
+﻿using Lms.Api.Services;
+using Lms.Api.Installers;
+using Lms.Auth.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-var connString = config.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContextPool<DataContext>(options =>
-        options.UseNpgsql(connString)
-        .EnableSensitiveDataLogging()
-        .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-        )
-    .AddLogging();
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
+builder.Services.InstallDb(config);
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.SetServices();
+builder.Services.InstallJwt(config);
+builder.Services.InstallSwagger();
+
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {

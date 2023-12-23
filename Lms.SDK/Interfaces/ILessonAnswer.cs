@@ -8,12 +8,10 @@ namespace Lms.SDK.Interfaces;
 /// </summary>
 /// <typeparam name="TLesson"></typeparam>
 /// <typeparam name="TCourse"></typeparam>
-/// <typeparam name="TCabinet"></typeparam>
 /// <typeparam name="TLessonField"></typeparam>
-public interface ILessonAnswer<TLesson, TCourse, TCabinet, TLessonField> : IDynamicEntity
-    where TCabinet : ICabinet
-    where TCourse : ICourse<TLesson, TCourse, TCabinet, TLessonField>
-    where TLesson : ILesson<TLesson, TCourse, TCabinet, TLessonField>
+public interface ILessonAnswer<TLesson, TCourse, TLessonField> : IDynamicEntity
+    where TCourse : ICourse<TLesson, TCourse, TLessonField>
+    where TLesson : ILesson<TLesson, TCourse, TLessonField>
 {
     /// <summary>
     /// Status

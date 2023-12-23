@@ -11,4 +11,3 @@ public class LessonField : Entity, ILessonField
     public uint Position { get; set; }
     public required string Title { get; set; }
 }
-

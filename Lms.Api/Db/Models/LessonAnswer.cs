@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Lms.Api.Db.Models;
 
-public class LessonAnswer : Entity, ILessonAnswer<Lesson, Course, Cabinet, LessonField>
+public class LessonAnswer : Entity, ILessonAnswer<Lesson, Course, LessonField>
 {
     public LessonAnswerStatus Status { get; set; }
     public long LessonId { get; set; }
@@ -15,7 +15,6 @@ public class LessonAnswer : Entity, ILessonAnswer<Lesson, Course, Cabinet, Lesso
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
     public DateTimeOffset LastStatusDate { get; set; } = DateTimeOffset.Now;
     public long? CheckerId { get; set; }
-    public User? Checker { get; set; }
 
     [Column(TypeName = "jsonb")]
     public ExpandoObject Data { get; set; } = new ExpandoObject();

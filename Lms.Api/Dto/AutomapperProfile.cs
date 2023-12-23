@@ -1,23 +1,19 @@
 ﻿using AutoMapper;
 using Lms.Api.Db.Models;
-using Lms.Api.Dto.PostRequest;
-using Lms.Api.Dto.PutRequests;
-using Lms.Api.Dto.Response;
+using Lms.Api.Dto.CourseDto;
 
-namespace Lms.Api.Dto;
-
-public class AutomapperProfile : Profile
+namespace Lms.Api.Dto
 {
-    public AutomapperProfile()
+
+    public class AutomapperProfile : Profile
     {
-        CreateMap<Cabinet, CabinetResponse>();
-        CreateMap<CabinetPutRequest, Cabinet>();
-        CreateMap<CabinetPostRequest, Cabinet>();
+        public AutomapperProfile()
+        {
 
-
-        CreateMap<User, UserResponse>();
-        CreateMap<UserPutRequest, User>();
-        CreateMap<UserPostRequest, User>();
+            CreateMap<Course, CourseResponse>()
+                .ForMember(
+                    x => x.LessonsCount,
+                    o => o.MapFrom(d => d.Lessons.Count()));
+        }
     }
 }
-

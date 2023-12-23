@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Api", "Lms.Api\Lms.Api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.SDK", "Lms.SDK\Lms.SDK.csproj", "{4CE9E37D-774C-43EE-AD1C-441AFDBF37C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Auth", "Lms.Auth\Lms.Auth.csproj", "{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4CE9E37D-774C-43EE-AD1C-441AFDBF37C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE9E37D-774C-43EE-AD1C-441AFDBF37C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE9E37D-774C-43EE-AD1C-441AFDBF37C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

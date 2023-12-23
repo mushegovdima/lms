@@ -7,22 +7,25 @@ namespace Lms.SDK.Interfaces;
 /// </summary>
 /// <typeparam name="TLesson"></typeparam>
 /// <typeparam name="TCourse"></typeparam>
-/// <typeparam name="TCabinet"></typeparam>
 /// <typeparam name="TLessonField"></typeparam>
-public interface ICourse<TLesson, TCourse, TCabinet, TLessonField> : IEntity, IHasTitle
-    where TCourse : ICourse<TLesson, TCourse, TCabinet, TLessonField>
-    where TLesson : ILesson<TLesson, TCourse, TCabinet, TLessonField>
-    where TCabinet: ICabinet
+public interface ICourse<TLesson, TCourse, TLessonField> : IEntity, IHasTitle
+    where TCourse : ICourse<TLesson, TCourse, TLessonField>
+    where TLesson : ILesson<TLesson, TCourse, TLessonField>
 {
+    /// <summary>
+    /// Desc
+    /// </summary>
+    public string Description { get; set; }
+
     /// <summary>
     /// Cabinet id
     /// </summary>
     public long CabinetId { get; set; }
 
     /// <summary>
-    /// Cabinet
+    /// Author
     /// </summary>
-    public TCabinet Cabinet { get; set; }
+    public long AuthorId { get; set; }
 
     /// <summary>
     /// Lessons

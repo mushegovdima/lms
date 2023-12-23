@@ -18,31 +18,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Db\" />
-    <None Remove="Db\Models\" />
-    <None Remove="Services\" />
-    <None Remove="Dto\" />
-    <None Remove="Services\Impl\" />
-    <None Remove="Dto\PutRequests\" />
-    <None Remove="Dto\Response\" />
-    <None Remove="Dto\PostRequest\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Db\" />
-    <Folder Include="Db\Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="Dto\" />
-    <Folder Include="Services\Impl\" />
-    <Folder Include="Dto\PutRequests\" />
-    <Folder Include="Dto\Response\" />
-    <Folder Include="Dto\PostRequest\" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lms.SDK\Lms.SDK.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+
 </Project>

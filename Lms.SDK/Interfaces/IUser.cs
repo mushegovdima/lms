@@ -11,6 +11,7 @@ namespace Lms.SDK.Interfaces
         /// <summary>
         /// Email
         /// </summary>
+        [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
@@ -24,7 +25,15 @@ namespace Lms.SDK.Interfaces
         /// Name
         /// </summary>
         [StringLength(120)]
+        [Required]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        [StringLength(120)]
+        [Required]
+        public string Login { get; set; }
 
         /// <summary>
         /// Creation date

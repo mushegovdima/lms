@@ -19,5 +19,10 @@ public enum FieldType
     /// Number (int)
     /// </summary>
     Number = 2,
+
+    /// <summary>
+    /// Link on youtube or others...
+    /// </summary>
+    Video = 3,
 }
 
