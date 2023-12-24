@@ -15,7 +15,9 @@ public class DataContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<UserRefreshToken> RefreshTokens { get; set; }
     public DbSet<Cabinet> Cabinets { get; set; }
+    public DbSet<CabinetRole> CabinetRoles { get; set; }
 
     public override int SaveChanges()
     {

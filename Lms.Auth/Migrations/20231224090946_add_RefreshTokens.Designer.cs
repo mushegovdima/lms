@@ -3,6 +3,7 @@ using System;
 using Lms.Auth.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Lms.Auth.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231224090946_add_RefreshTokens")]
+    partial class add_RefreshTokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,35 +46,6 @@ namespace Lms.Auth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cabinets");
-                });
-
-            modelBuilder.Entity("Lms.Auth.Db.Models.CabinetRole", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CabinetId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("integer");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CabinetId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CabinetRoles");
                 });
 
             modelBuilder.Entity("Lms.Auth.Db.Models.User", b =>
@@ -154,25 +128,6 @@ namespace Lms.Auth.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("Lms.Auth.Db.Models.CabinetRole", b =>
-                {
-                    b.HasOne("Lms.Auth.Db.Models.Cabinet", "Cabinet")
-                        .WithMany("AccessRoles")
-                        .HasForeignKey("CabinetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Lms.Auth.Db.Models.User", "User")
-                        .WithMany("CabinetAccess")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cabinet");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Lms.Auth.Db.Models.UserRefreshToken", b =>
                 {
                     b.HasOne("Lms.Auth.Db.Models.User", "User")
@@ -182,16 +137,6 @@ namespace Lms.Auth.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Lms.Auth.Db.Models.Cabinet", b =>
-                {
-                    b.Navigation("AccessRoles");
-                });
-
-            modelBuilder.Entity("Lms.Auth.Db.Models.User", b =>
-                {
-                    b.Navigation("CabinetAccess");
                 });
 #pragma warning restore 612, 618
         }

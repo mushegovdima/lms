@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lms.Auth.Services.Impl
 {
-    public class UserService : EntityServiceBase<User>
+    public class UserService : EntityServiceBase<User>, IUserService
     {
         public UserService(DataContext db, IMapper mapper) : base(db, mapper)
         {

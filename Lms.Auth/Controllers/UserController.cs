@@ -1,4 +1,4 @@
-﻿using Lms.Auth.Services.Impl;
+﻿using Lms.Auth.Services;
 using Lms.Auth.UserDto;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -12,9 +12,9 @@ namespace Lms.Auth.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class UserController : ControllerBase
 {
-    private readonly UserService _service;
+    private readonly IUserService _service;
 
-    public UserController(UserService service)
+    public UserController(IUserService service)
     {
         _service = service;
     }

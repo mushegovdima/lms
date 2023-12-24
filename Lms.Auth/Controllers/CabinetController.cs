@@ -1,5 +1,6 @@
 ﻿using Lms.Auth.Db.Models;
 using Lms.Auth.Dto.CabinetDto;
+using Lms.Auth.Services;
 using Lms.SDK.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -13,9 +14,9 @@ namespace Lms.Api.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class CabinetController : ControllerBase
 {
-    private readonly IEntityService<Cabinet> _service;
+    private readonly ICabinetService _service;
 
-    public CabinetController(IEntityService<Cabinet> service)
+    public CabinetController(ICabinetService service)
     {
         _service = service;
     }
@@ -56,4 +57,3 @@ public class CabinetController : ControllerBase
     }
 
 }
-

@@ -12,8 +12,8 @@ public class LessonAnswer : Entity, ILessonAnswer<Lesson, Course, LessonField>
     public long LessonId { get; set; }
     public required Lesson Lesson { get; set; }
     public required long AuthorId { get; set; }
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
-    public DateTimeOffset LastStatusDate { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset LastStatusDate { get; set; } = DateTimeOffset.UtcNow;
     public long? CheckerId { get; set; }
 
     [Column(TypeName = "jsonb")]
