@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Lms.Auth.Db;
 using Lms.Auth.Db.Models;
@@ -63,7 +64,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 
     public async Task<T> Update<TPutRequest>(long id, TPutRequest request, CancellationToken cancellationToken = default) where TPutRequest : IPutRequest
     {
-        var entity = await Db.Set<T>()
+        var entity = await GetQuery()
             .AsTracking()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken)
             ?? throw new KeyNotFoundException($"{typeof(T).Name}: {id}");
@@ -81,7 +82,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 
     public async Task Delete(long id, CancellationToken cancellationToken = default)
     {
-        var entity = await Db.Set<T>()
+        var entity = await GetQuery()
             .AsTracking()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken)
             ?? throw new KeyNotFoundException($"{typeof(T).Name}: {id}");

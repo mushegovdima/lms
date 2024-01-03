@@ -14,6 +14,8 @@ namespace Lms.Api.Dto
                 .ForMember(
                     x => x.LessonsCount,
                     o => o.MapFrom(d => d.Lessons.Count()));
+
+            CreateMap<CourseRole, CourseRoleResponse>();
         }
     }
 }

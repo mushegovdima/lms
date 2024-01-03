@@ -1,6 +1,4 @@
-﻿using Lms.Api.Db.Models;
-using Lms.Api.Services.Impl;
-using Lms.SDK.Services;
+﻿using Lms.Api.Services.Impl;
 
 namespace Lms.Api.Services;
 
@@ -8,8 +6,10 @@ internal static class ServiceInstallExtensions
 {
     internal static void SetServices(this IServiceCollection services)
     {
-        services.AddScoped<IEntityService<Lesson>, LessonService>();
-        services.AddScoped<IEntityService<Course>, CourseService>();
+        services.AddScoped<LessonService>();
+        services.AddScoped<LessonAnswerService>();
+        services.AddScoped<ICourseRoleService, CourseRoleService>();
+        services.AddScoped<CourseService>();
     }
 }
 

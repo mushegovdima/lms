@@ -33,11 +33,6 @@ public interface ILesson<TLesson, TCourse, TLessonField> : IEntity, IHasTitle
     public string? Image { get; set; }
 
     /// <summary>
-    /// CabinetId
-    /// </summary>
-    public long CabinetId { get; set; }
-
-    /// <summary>
     /// Course id
     /// </summary>
     public long CourseId { get; set; }

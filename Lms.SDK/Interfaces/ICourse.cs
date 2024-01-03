@@ -18,11 +18,6 @@ public interface ICourse<TLesson, TCourse, TLessonField> : IEntity, IHasTitle
     public string Description { get; set; }
 
     /// <summary>
-    /// Cabinet id
-    /// </summary>
-    public long CabinetId { get; set; }
-
-    /// <summary>
     /// Author
     /// </summary>
     public long AuthorId { get; set; }

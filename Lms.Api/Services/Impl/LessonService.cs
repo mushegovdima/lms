@@ -6,7 +6,7 @@ namespace Lms.Api.Services.Impl
 {
     public class LessonService : EntityServiceBase<Lesson>
     {
-        public LessonService(DataContext db, IMapper mapper) : base(db, mapper)
+        public LessonService(DataContext db, IMapper mapper, IHttpContextAccessor accessor) : base(db, mapper, accessor)
         {
         }
     }

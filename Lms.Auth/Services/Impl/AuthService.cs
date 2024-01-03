@@ -6,9 +6,6 @@ using Lms.Auth.Db.Models;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Lms.Auth.Models;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using Lms.SDK.Models;
 
 namespace Lms.Auth.Services.Impl
 {
@@ -91,13 +88,12 @@ namespace Lms.Auth.Services.Impl
 
         private ClaimsIdentity GetIdentity(User user)
         {
-            var access = JsonConvert.SerializeObject(user.CabinetAccess.Select(x => new CabinetAccessModel(x.CabinetId, x.Role)));
             return new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Login),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim("Access", access)
+                    new Claim("IsAdmin", user.IsAdmin.ToString()),
                 });
             ;
         }

@@ -39,6 +39,11 @@ namespace Lms.SDK.Interfaces
         /// Creation date
         /// </summary>
         public DateTimeOffset CreatedAt { get; set; }
+
+        /// <summary>
+        /// IsAdmin
+        /// </summary>
+        public bool IsAdmin { get; set; }
     }
 }
 

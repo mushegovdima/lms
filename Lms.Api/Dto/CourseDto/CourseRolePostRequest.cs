@@ -1,11 +1,11 @@
 using Lms.SDK.Common;
 using Lms.SDK.Enums;
 
-namespace Lms.Auth.Dto.CabinetRoleDto;
+namespace Lms.Api.Dto.CourseDto;
 
-public class CabinetRolePostRequest: IPostRequest
+public class CourseRolePostRequest: IPostRequest
 {
     public required long UserId { get; set; }
-    public required long CabinetId { get; set; }
+    public required long CourseId { get; set; }
     public required Role Role { get; set; }
 }

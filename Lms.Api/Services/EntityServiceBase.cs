@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Lms.Api.Db;
 using Lms.Api.Db.Models;
@@ -16,14 +17,16 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 {
     protected readonly DataContext Db;
     protected readonly IMapper Mapper;
+    protected readonly ClaimsPrincipal User;
 
-    public EntityServiceBase(DataContext db, IMapper mapper)
+    public EntityServiceBase(DataContext db, IMapper mapper, IHttpContextAccessor accessor)
     {
         Db = db;
         Mapper = mapper;
+        User = accessor.HttpContext!.User;
     }
 
-    public IQueryable<T> GetQuery() => Db.Set<T>().AsQueryable();
+    public virtual IQueryable<T> GetQuery() => Db.Set<T>().AsQueryable();
 
 
     public Task<TResponse> Get<TResponse>(long id, CancellationToken cancellationToken = default) where TResponse : IResponse
@@ -57,7 +60,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
         return entity.Id;
     }
 
-    public async Task<long> Create(T entity, CancellationToken cancellationToken = default)
+    public virtual async Task<long> Create(T entity, CancellationToken cancellationToken = default)
     {
         await Db.AddAsync(entity, cancellationToken);
         await Db.SaveChangesAsync(cancellationToken);
@@ -75,7 +78,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
         return await Update(entity, cancellationToken);
     }
 
-    public async Task<T> Update(T entity, CancellationToken cancellationToken = default)
+    public virtual async Task<T> Update(T entity, CancellationToken cancellationToken = default)
     {
         Db.Update(entity);
         await Db.SaveChangesAsync(cancellationToken);
@@ -89,6 +92,11 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken)
             ?? throw new KeyNotFoundException($"{typeof(T).Name}: {id}");
 
+        await Delete(entity, cancellationToken);
+    }
+
+    public virtual async Task Delete(T entity, CancellationToken cancellationToken = default)
+    {
         Db.Remove(entity);
         await Db.SaveChangesAsync(cancellationToken);
     }

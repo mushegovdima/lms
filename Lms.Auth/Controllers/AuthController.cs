@@ -1,15 +1,18 @@
 ﻿using Lms.Auth.Dto;
-using Lms.Auth.Extensions;
+using Lms.SDK.Extensions;
 using Lms.Auth.Services;
 using Lms.Auth.Services.Impl;
 using Lms.Auth.UserDto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Lms.Auth.Controllers;
 
 [ApiController]
 [Produces("application/json")]
 [Route("api/[controller]")]
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class AuthController : ControllerBase
 {
     private readonly UserService _userService;
@@ -22,6 +25,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
     public async Task<IActionResult> Register([FromBody] UserPostRequest request, CancellationToken cancellationToken = default)
     {
@@ -34,6 +38,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(UserTokenResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> Login([FromBody] LoginModel model, CancellationToken cancellationToken = default)
     {

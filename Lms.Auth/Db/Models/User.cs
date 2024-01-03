@@ -20,21 +20,17 @@ public class User : Entity, IUser, IEntityTypeConfiguration<User>
     public required string Login { get; set; }
 
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    
+    public bool IsAdmin { get; set; }
 
     public required byte[] PasswordHash { get; set; }
 
     public required byte[] PasswordSalt { get; set; }
-
-    public ICollection<CabinetRole> CabinetAccess { get; set; } = Array.Empty<CabinetRole>();
 
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasIndex(x => x.Login).IsUnique();
         builder.HasIndex(x => x.Email).IsUnique();
 
-        builder.HasMany(x => x.CabinetAccess)
-            .WithOne(x => x.User)
-            .HasForeignKey(x => x.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }
