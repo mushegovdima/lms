@@ -6,12 +6,12 @@
 public enum LessonStatus
 {
     /// <summary>
-    /// Disvbled
-    /// </summary>
-    Disabled = 0,
-
-    /// <summary>
     /// Active and visible for students
     /// </summary>
-    Active = 1,
+    Active = 0,
+
+    /// <summary>
+    /// Disabled
+    /// </summary>
+    Disabled = 1,
 }

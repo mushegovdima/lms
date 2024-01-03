@@ -12,5 +12,6 @@ public class Lesson : Entity, ILesson<Lesson, Course, LessonField>
     public long CourseId { get; set; }
     public required Course Course { get; set; }
     public required string Title { get; set; }
+    public uint Position { get; set; }
 }
 

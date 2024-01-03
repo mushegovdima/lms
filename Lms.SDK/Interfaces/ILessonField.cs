@@ -9,6 +9,11 @@ namespace Lms.SDK.Interfaces;
 public interface ILessonField : IEntity, IOrderable, IHasTitle
 {
     /// <summary>
+    /// Lesson
+    /// </summary>
+    public long LessonId { get; set; }
+
+    /// <summary>
     /// Description
     /// </summary>
     public string? Description { get; set; }

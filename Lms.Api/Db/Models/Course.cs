@@ -20,7 +20,6 @@ public class Course : Entity, ICourse<Lesson, Course, LessonField>, IEntityTypeC
 
     public void Configure(EntityTypeBuilder<Course> builder)
     {
-        
         builder.HasMany(x => x.AccessRoles)
             .WithOne(x => x.Course)
             .HasForeignKey(x => x.CourseId)

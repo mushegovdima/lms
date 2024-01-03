@@ -5,7 +5,7 @@ namespace Lms.Api.Db.Models;
 /// <summary>
 /// Course permissions
 /// </summary>
-public class CourseRole: Entity
+public class CourseRole : Entity
 {
     public long UserId { get; set; }
     public long CourseId { get; set; }

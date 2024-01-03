@@ -10,7 +10,7 @@ namespace Lms.SDK.Interfaces;
 /// <typeparam name="TLesson"></typeparam>
 /// <typeparam name="TCourse"></typeparam>
 /// <typeparam name="TLessonField"></typeparam>
-public interface ILesson<TLesson, TCourse, TLessonField> : IEntity, IHasTitle
+public interface ILesson<TLesson, TCourse, TLessonField> : IEntity, IHasTitle, IOrderable
     where TLesson : ILesson<TLesson, TCourse, TLessonField>
     where TCourse: ICourse<TLesson, TCourse, TLessonField>
 {

@@ -47,7 +47,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 
     public Task<T> Load(long id, bool tracking = false, CancellationToken cancellationToken = default)
     {
-        return Db.Set<T>()
+        return GetQuery()
             .AsTracking(tracking ? QueryTrackingBehavior.TrackAll : QueryTrackingBehavior.NoTracking)
             .FirstAsync(x => x.Id == id, cancellationToken);
     }
@@ -69,7 +69,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 
     public async Task<T> Update<TPutRequest>(long id, TPutRequest request, CancellationToken cancellationToken = default) where TPutRequest : IPutRequest
     {
-        var entity = await Db.Set<T>()
+        var entity = await GetQuery()
             .AsTracking()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken)
             ?? throw new KeyNotFoundException($"{typeof(T).Name}: {id}");
@@ -87,7 +87,7 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
 
     public async Task Delete(long id, CancellationToken cancellationToken = default)
     {
-        var entity = await Db.Set<T>()
+        var entity = await GetQuery()
             .AsTracking()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken)
             ?? throw new KeyNotFoundException($"{typeof(T).Name}: {id}");
