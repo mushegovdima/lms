@@ -6,10 +6,10 @@ internal static class ServiceInstallExtensions
 {
     internal static void SetServices(this IServiceCollection services)
     {
-        services.AddScoped<LessonService>();
-        services.AddScoped<LessonAnswerService>();
+        services.AddScoped<ILessonService, LessonService>();
+        services.AddScoped<ILessonAnswerService, LessonAnswerService>();
         services.AddScoped<ICourseRoleService, CourseRoleService>();
-        services.AddScoped<CourseService>();
+        services.AddScoped<ICourseService, CourseService>();
     }
 }
 

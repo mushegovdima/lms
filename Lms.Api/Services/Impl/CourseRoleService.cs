@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lms.Api.Services.Impl;
 
-public class CourseRoleService : EntityServiceBase<CourseRole>, ICourseRoleService
+internal class CourseRoleService : EntityServiceBase<CourseRole>, ICourseRoleService
 {
-    public CourseRoleService(DataContext db, IMapper mapper, IHttpContextAccessor accessor) : base(db, mapper, accessor)
+    public CourseRoleService(DataContext db, IMapper mapper, IHttpContextAccessor accessor)
+        : base(db, mapper, accessor)
     {
     }
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lms.Api.Services.Impl;
 
-public class CourseService : EntityServiceBase<Course>
+internal class CourseService : EntityServiceBase<Course>, ICourseService
 {
     private readonly ICourseRoleService _roleService;
     public CourseService(DataContext db, IMapper mapper, IHttpContextAccessor accessor, ICourseRoleService roleService)

@@ -1,5 +1,5 @@
 using Lms.Api.Dto.LessonDto;
-using Lms.Api.Services.Impl;
+using Lms.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +12,9 @@ namespace Lms.Api.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class LessonController : ControllerBase
 {
-    private readonly LessonService _service;
+    private readonly ILessonService _service;
 
-    public LessonController(LessonService service)
+    public LessonController(ILessonService service)
     {
         _service = service;
     }

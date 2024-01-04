@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
+using Lms.Api.Abstract;
 using Lms.Api.Db;
 using Lms.Api.Db.Models;
-using Lms.Api.Dto.LessonAnswerDto;
-using Lms.Api.Models;
 using Lms.SDK.Common;
 using Lms.SDK.Enums;
 using Lms.SDK.Extensions;
@@ -11,7 +10,7 @@ using Microsoft.OpenApi.Extensions;
 
 namespace Lms.Api.Services.Impl;
 
-public class LessonAnswerService : EntityServiceBase<LessonAnswer>
+internal class LessonAnswerService : EntityServiceBase<LessonAnswer>, ILessonAnswerService
 {
     private readonly ICourseRoleService _courseRoleService;
     public LessonAnswerService(
@@ -28,7 +27,8 @@ public class LessonAnswerService : EntityServiceBase<LessonAnswer>
         return base.GetQuery().Include(x => x.Lesson);
     }
 
-    public async Task<IFilterResponse<LessonAnswerListItemResponse>> GetByFilter(LessonAnswerFilter filter, CancellationToken cancellationToken = default)
+    public async Task<IFilterResponse<TResponse>> GetByFilter<TResponse>(BaseFilter<LessonAnswer, TResponse> filter, CancellationToken cancellationToken = default)
+        where TResponse : IResponse
     {
         return await filter.GetResponse(GetQuery(), Mapper, cancellationToken);
     }
@@ -62,7 +62,7 @@ public class LessonAnswerService : EntityServiceBase<LessonAnswer>
     /// <param name="entity"></param>
     /// <param name="status"></param>
     /// <returns></returns>
-    public async Task<bool> CanChangeStatus(LessonAnswer entity,  LessonAnswerStatus status)
+    private async Task<bool> CanChangeStatus(LessonAnswer entity,  LessonAnswerStatus status)
     {
         if (status == entity.Status) return false;
 

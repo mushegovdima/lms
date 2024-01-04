@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lms.Api.Services.Impl;
 
-public class LessonService : EntityServiceBase<Lesson>
+internal class LessonService : EntityServiceBase<Lesson>, ILessonService
 {
     private readonly ICourseRoleService _courseRoleService;
     public LessonService(

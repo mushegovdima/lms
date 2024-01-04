@@ -1,6 +1,7 @@
 using Lms.Api.Dto.LessonAnswerDto;
 using Lms.Api.Dto.LessonDto;
 using Lms.Api.Models;
+using Lms.Api.Services;
 using Lms.Api.Services.Impl;
 using Lms.SDK.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -15,9 +16,9 @@ namespace Lms.Api.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class LessonAnswerController : ControllerBase
 {
-    private readonly LessonAnswerService _service;
+    private readonly ILessonAnswerService _service;
 
-    public LessonAnswerController(LessonAnswerService service)
+    public LessonAnswerController(ILessonAnswerService service)
     {
         _service = service;
     }
@@ -73,6 +74,22 @@ public class LessonAnswerController : ControllerBase
     public async Task<IActionResult> SendToCheck(long id, CancellationToken cancellationToken = default)
     {
         await _service.SendToCheck(id, cancellationToken);
+        return Ok();
+    }
+
+    [HttpPost("approve/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Approve(long id, CancellationToken cancellationToken = default)
+    {
+        await _service.Approve(id, cancellationToken);
+        return Ok();
+    }
+
+    [HttpPost("cancel/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Cancel(long id, CancellationToken cancellationToken = default)
+    {
+        await _service.Cancel(id, cancellationToken);
         return Ok();
     }
 
