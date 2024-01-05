@@ -1,5 +1,5 @@
 import type { LoginForm, RegisterForm, UserTokenResponse } from "@/models";
-import { authInstance } from "./auth-instance";
+import authInstance from "./auth-instance";
 
 export const authService = {
     register: (data: RegisterForm) : Promise<UserTokenResponse> => {
@@ -7,11 +7,11 @@ export const authService = {
     },
 
     login: (data: LoginForm) : Promise<UserTokenResponse> => {
-        return authInstance.post('auth/signin', data).then(x => x.data)
+        return authInstance.post('auth/login', data).then(x => x.data)
     },
 
     refreshToken: (refreshToken: string) : Promise<UserTokenResponse> => {
-        return authInstance.post('auth/signin', refreshToken).then(x => x.data)
+        return authInstance.post('auth/refresh-token', refreshToken).then(x => x.data)
     },
 
     logout: () => {

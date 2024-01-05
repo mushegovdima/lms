@@ -1,5 +1,5 @@
 import { createStore, type Store } from 'vuex';
-import auth from './auth.module';
+import { auth } from './auth.module';
 import type { InjectionKey } from 'vue';
 
 export const key: InjectionKey<Store<unknown>> = Symbol()

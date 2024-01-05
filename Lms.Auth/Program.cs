@@ -7,6 +7,7 @@ var config = builder.Configuration;
 builder.Services.InstallDb(config);
 builder.Services.InstallSwagger();
 builder.Services.InstallJwt(config);
+builder.Services.InstallCors();
 builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

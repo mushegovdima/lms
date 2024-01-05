@@ -1,8 +1,10 @@
 import axios from "axios";
+import { interceptors } from "../interceptors";
 
-const url = import.meta.env.LMS_AUTH_URL;
-
-export const authInstance = axios.create({
-    baseURL: `${url}api/`,
-    headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+const authInstance = axios.create({
+    baseURL: `${import.meta.env.VITE_LMS_AUTH_URL}api/`,
 });
+
+interceptors(authInstance);
+
+export default authInstance;

@@ -1,5 +1,6 @@
 ﻿using Lms.Auth.Services;
 using Lms.Auth.UserDto;
+using Lms.SDK.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,14 @@ public class UserController : ControllerBase
     {
         var model = await _service.GetByIdRange<UserResponse>(ids, cancellationToken);
         return Ok(model);
+    }
+
+    [HttpGet("getMe")]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetMe(CancellationToken cancellationToken = default)
+    {
+        var model = await _service.Get<UserResponse>(User.UserId(), cancellationToken);
+        return model is null ? BadRequest() : Ok(model);
     }
 
     [HttpGet("{id}")]

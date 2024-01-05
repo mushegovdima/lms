@@ -22,7 +22,24 @@ const router = createRouter({
         title: 'About',
         icon: 'mdi-information'
       },
-    }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('@/components/security/signup.vue'),
+      meta: {
+        layout: 'blank',
+      },
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/components/security/login.vue'),
+      meta: {
+        layout: 'blank',
+      },
+    },
+
   ]
 })
 

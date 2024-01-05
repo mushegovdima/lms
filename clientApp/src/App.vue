@@ -1,11 +1,11 @@
 <template lang="pug">
-  v-layout
-    v-navigation-drawer(expand-on-hover rail permanent theme="dark")
+  v-layout(full-height)
+    v-navigation-drawer(v-if="visibleMenu" expand-on-hover rail permanent theme="dark")
       v-list
         v-list-item.my-1(
-          prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-          title="Sandra Adams"
-          subtitle="sandra_a88@gmailcom")
+          prepend-icon="mdi-account"
+          :title="user?.name"
+          :subtitle="user?.email")
         v-divider
 
         v-list-item(v-for="route in routes" :key="route.path"
@@ -15,13 +15,14 @@
       
       template(v-if="userActive" #append)
         div.pa-2
-          v-btn(block)
+          v-btn(block @click="logout")
             v-icon mdi-logout
 
     RouterView
 </template>
 
 <script setup lang="ts">
+import type { User } from './models';
 import router from './router';
 
 defineOptions({
@@ -31,9 +32,24 @@ defineOptions({
         .filter(x => !!x.meta?.nav)
         .map(x => ({ path: x.path, title: x.meta.title, icon: x.meta.icon }));
     },
-    userActive() {
-      return this.$store.getters.isActive;
+    visibleMenu() {
+      return router.currentRoute.value.matched?.[0]?.meta?.layout !== 'blank';
     },
+    userActive() {
+      return this.$store.getters['auth/isActive'];
+    },
+    user(): User {
+      return this.$store.state.auth.user;
+    }
+  },
+  created(){
+    if (this.userActive) this.$store.dispatch('auth/init');
+    else router.push({ name: 'login'});
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+    }
   }
 })
 </script>

@@ -15,10 +15,10 @@ namespace Lms.Auth.Controllers;
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class AuthController : ControllerBase
 {
-    private readonly UserService _userService;
+    private readonly IUserService _userService;
     private readonly IAuthService _authService;
 
-    public AuthController(UserService userService, IAuthService authService)
+    public AuthController(IUserService userService, IAuthService authService)
     {
         _userService = userService;
         _authService = authService;
