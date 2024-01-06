@@ -11,12 +11,13 @@ namespace Lms.Api.Dto
     {
         public AutomapperProfile()
         {
-
+            CreateMap<CoursePostRequest, Course>();
             CreateMap<Course, CourseResponse>()
                 .ForMember(
                     x => x.LessonsCount,
                     o => o.MapFrom(d => d.Lessons.Count()));
 
+            CreateMap<CourseRolePostRequest, CourseRole>();
             CreateMap<CourseRole, CourseRoleResponse>();
 
             CreateMap<LessonPostRequest, Lesson>();

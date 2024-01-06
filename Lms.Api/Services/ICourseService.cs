@@ -14,4 +14,13 @@ public interface ICourseService : IEntityService<Course>
     /// <param name="courseId"></param>
     /// <returns></returns>
     public Task<bool> UserCanUpdateCourse(long courseId);
+
+    /// <summary>
+    /// Get by author
+    /// </summary>
+    /// <typeparam name="TResponse"></typeparam>
+    /// <param name="authorId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<IEnumerable<TResponse>> GetByAuthor<TResponse>(long authorId, CancellationToken cancellationToken);
 }

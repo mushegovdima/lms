@@ -27,6 +27,14 @@ public class CourseController : ControllerBase
         return Ok(model);
     }
 
+    [HttpGet("getByAuthor/{id}")]
+    [ProducesResponseType(typeof(IEnumerable<CourseResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByAuthor(long id, CancellationToken cancellationToken = default)
+    {
+        var model = await _service.GetByAuthor<CourseResponse>(id, cancellationToken);
+        return Ok(model);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(long id, CancellationToken cancellationToken = default)
     {

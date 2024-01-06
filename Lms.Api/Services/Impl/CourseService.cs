@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Lms.Api.Db;
 using Lms.Api.Db.Models;
 using Lms.SDK.Extensions;
@@ -28,7 +29,8 @@ internal class CourseService : EntityServiceBase<Course>, ICourseService
 
     public override async Task<long> Create(Course entity, CancellationToken cancellationToken = default)
     {
-        var id =  await base.Create(entity, cancellationToken);
+        entity.AuthorId = User.UserId();
+        var id = await base.Create(entity, cancellationToken);
         await _roleService.AddUserRole(entity.AuthorId, id, SDK.Enums.Role.Admin, cancellationToken);
         return id;
     }
@@ -36,6 +38,14 @@ internal class CourseService : EntityServiceBase<Course>, ICourseService
     public Task<bool> UserCanUpdateCourse(long courseId)
     {
         return _roleService.UserHasRoles(courseId, SDK.Enums.Role.Admin);
+    }
+
+    public async Task<IEnumerable<TResponse>> GetByAuthor<TResponse>(long authorId, CancellationToken cancellationToken = default)
+    {
+        return await GetQuery()
+            .Where(x => x.AuthorId == authorId)
+            .ProjectTo<TResponse>(Mapper.ConfigurationProvider)
+            .ToArrayAsync(cancellationToken);
     }
 }
 

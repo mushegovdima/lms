@@ -76,7 +76,7 @@ export const auth = {
     },
     mutations: {
         init(state: AuthState, res: User) {
-            console.log('init')
+            console.debug('init')
             state.token = initialState.token;
             state.expireDate = initialState.expireDate;
             state.refreshToken = initialState.refreshToken;
@@ -84,7 +84,7 @@ export const auth = {
             state.user = res;
         },
         async loginSuccess(state: AuthState, res: UserTokenResponse) {
-            console.log('login success')
+            console.debug('login success')
             state.token = res.token;
             state.expireDate = res.expireDate;
             state.refreshToken = res.refreshToken;
@@ -94,13 +94,14 @@ export const auth = {
             state.userId = res.userId;
         },
         loginFailure(state: AuthState) {
-            console.log('login failure')
+            console.debug('login failure')
             clearStorage(state);
+            router.push({ name: 'login' });
         },
         logout(state: AuthState) {
-            console.log('logout')
+            console.debug('logout')
             clearStorage(state);
-            router.push({ name: 'login' })
+            router.push({ name: 'login' });
         },
     },
 };

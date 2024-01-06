@@ -6,12 +6,3 @@
       a(href="https://vitejs.dev/" target="_blank" rel="noopener") Vite +
       a(href="https://vuejs.org/" target="_blank" rel="noopener") Vue 3. What's next?
 </template>
-
-<script lang="ts">
-import { Component, Vue, toNative } from 'vue-facing-decorator'
-
-@Component
-class HomePage extends Vue {}
-
-export default toNative(HomePage);
-</script>

@@ -39,6 +39,23 @@ const router = createRouter({
         layout: 'blank',
       },
     },
+    {
+      path: '/constructor',
+      name: 'constructor',
+      component: () => import('@/components/constructor/index.vue'),
+      children: [
+        {
+          path: '/constructor',
+          name: 'constructor-courses',
+          component: () => import('@/components/constructor/courses.vue')
+        }
+      ],
+      meta: { 
+        nav: true,
+        title: 'Constructor',
+        icon: 'mdi-code-tags'
+      },
+    },
 
   ]
 })

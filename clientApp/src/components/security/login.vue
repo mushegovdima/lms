@@ -25,8 +25,7 @@
       isComplete: {
         handler: (value: boolean) => {
           if(value) router.push({ name: 'home' } )
-        },
-        immediate: true
+        }
       }
     },
   })

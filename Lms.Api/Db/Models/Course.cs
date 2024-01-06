@@ -16,7 +16,7 @@ public class Course : Entity, ICourse<Lesson, Course, LessonField>, IEntityTypeC
 
     public required ICollection<Lesson> Lessons { get; set; }
 
-    public ICollection<CourseRole> AccessRoles { get; set; } = Array.Empty<CourseRole>();
+    public ICollection<CourseRole> AccessRoles { get; set; } = new List<CourseRole>();
 
     public void Configure(EntityTypeBuilder<Course> builder)
     {

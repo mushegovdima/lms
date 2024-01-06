@@ -52,12 +52,10 @@ public abstract class EntityServiceBase<T> : IEntityService<T> where T : Entity
             .FirstAsync(x => x.Id == id, cancellationToken);
     }
 
-    public async Task<long> Create<TPostRequest>(TPostRequest request, CancellationToken cancellationToken = default) where TPostRequest : IPostRequest
+    public Task<long> Create<TPostRequest>(TPostRequest request, CancellationToken cancellationToken = default) where TPostRequest : IPostRequest
     {
         var entity = Mapper.Map<T>(request);
-        await Db.AddAsync(entity, cancellationToken);
-        await Db.SaveChangesAsync(cancellationToken);
-        return entity.Id;
+        return Create(entity, cancellationToken);
     }
 
     public virtual async Task<long> Create(T entity, CancellationToken cancellationToken = default)
