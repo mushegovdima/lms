@@ -34,6 +34,7 @@
         v-list-item(v-for="item in items"
           prepend-icon="mdi-minus"
           :title="item.title"
+          :to="{ name: 'constructor-course', params: { courseId: item.id } }"
           :subtitle="item.description")
           template(#append)
             div {{ item.lessonsCount}} lessons

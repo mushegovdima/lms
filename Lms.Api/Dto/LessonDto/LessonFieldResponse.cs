@@ -10,5 +10,6 @@ public class LessonFieldResponse : IResponse
     public bool Required { get; set; }
     public FieldType Type { get; set; }
     public uint Position { get; set; }
+    public long LessonId { get; set; }
     public required string Title { get; set; }
 }

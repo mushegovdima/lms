@@ -48,7 +48,12 @@ const router = createRouter({
           path: '/constructor',
           name: 'constructor-courses',
           component: () => import('@/components/constructor/courses.vue')
-        }
+        },
+        {
+          path: '/constructor/:courseId',
+          name: 'constructor-course',
+          component: () => import('@/components/constructor/course-page.vue')
+        },
       ],
       meta: { 
         nav: true,

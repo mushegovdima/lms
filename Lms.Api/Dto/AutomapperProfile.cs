@@ -24,6 +24,7 @@ namespace Lms.Api.Dto
             CreateMap<Lesson, LessonListItemResponse>();
             CreateMap<Lesson, LessonResponse>();
             CreateMap<LessonField, LessonFieldResponse>();
+            CreateMap<LessonPutRequest, Lesson>();
 
             CreateMap<LessonAnswer, LessonAnswerResponse>();
             CreateMap<LessonAnswer, LessonAnswerListItemResponse>();

@@ -27,14 +27,15 @@
       logout() {
         this.$store.dispatch('auth/logout');
         this.$router.push({ name: 'login' })
-      }
+      },
     },
   })
+
 </script>
 
 <template lang="pug">
   v-layout
-    v-navigation-drawer(v-if="visibleMenu" expand-on-hover rail scrim permanent theme="dark")
+    v-navigation-drawer(v-if="visibleMenu" expand-on-hover rail scrim permanent theme='dark')
       v-list
         v-list-item.my-1(
           prepend-icon="mdi-account"
@@ -51,6 +52,8 @@
         div.pa-2
           v-btn(block @click="logout")
             v-icon mdi-logout
+
     v-main
-      RouterView
+      v-theme-provider(theme='light')
+        RouterView
 </template>

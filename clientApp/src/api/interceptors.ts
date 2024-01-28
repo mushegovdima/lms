@@ -15,7 +15,7 @@ export function interceptors(instance: AxiosInstance) {
     }, async function(error) {
         const { response: { status } } = error;
         if (status === 401) {
-            await store.dispatch('auth/logout');
+            store.dispatch('auth/logout');
         } else {
             return Promise.reject(error);
         }

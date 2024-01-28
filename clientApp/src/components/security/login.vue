@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { rules } from '@/components/validation-rules';
   import type { LoginForm } from '@/models';
-  import router from '@/router';
 
   defineOptions({
     data() {
@@ -14,18 +13,6 @@
       async submit() {
         if (!this.isValid) return;
         this.$store.dispatch('auth/login', this.model);
-      }
-    },
-    computed: {
-      isComplete() {
-        return this.$store.getters['auth/isActive'];
-      }
-    },
-    watch: {
-      isComplete: {
-        handler: (value: boolean) => {
-          if(value) router.push({ name: 'home' } )
-        }
       }
     },
   })

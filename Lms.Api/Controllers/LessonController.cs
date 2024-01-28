@@ -37,12 +37,12 @@ public class LessonController : ControllerBase
 
     [HttpPut("{id}")]
     [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Post(long id, [FromBody] LessonPutRequest request, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> Put(long id, [FromBody] LessonPutRequest request, CancellationToken cancellationToken = default)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var result = await _service.Update(id, request, cancellationToken);
-        return Ok(result);
+        await _service.Update(request, cancellationToken);
+        return Ok(await _service.Get<LessonResponse>(id, cancellationToken));
     }
 
     [HttpPost]

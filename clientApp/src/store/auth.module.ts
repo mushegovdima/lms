@@ -92,6 +92,7 @@ export const auth = {
                 state.user = await userService.getById(res.userId);
             }
             state.userId = res.userId;
+            router.push({ name: 'home' } )
         },
         loginFailure(state: AuthState) {
             console.debug('login failure')
