@@ -36,6 +36,20 @@ export interface LessonPostRequest {
     title: string;
 }
 
+export interface CourseRole extends Entity {
+    userId: number;
+    courseId: number;
+    role: Role;
+    createdAt: string | Date;
+}
+
+export interface CourseRolePostRequest {
+    userId: number;
+    email: string;
+    courseId: number;
+    role: Role;
+}
+
 /** enums */
 
 export enum LessonStatus {
@@ -48,4 +62,11 @@ export enum FieldType {
     text = 1,
     number = 2,
     video = 3
+}
+
+export enum Role
+{
+    admin = 1,
+    checker = 2,
+    student = 3,
 }

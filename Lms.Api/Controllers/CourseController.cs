@@ -21,7 +21,7 @@ public class CourseController : ControllerBase
 
     [HttpPost("getByIdRange")]
     [ProducesResponseType(typeof(IEnumerable<CourseResponse>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ByFilter([FromBody] IEnumerable<long> ids, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetByIdRange([FromBody] IEnumerable<long> ids, CancellationToken cancellationToken = default)
     {
         var model = await _service.GetByIdRange<CourseResponse>(ids, cancellationToken);
         return Ok(model);
@@ -32,6 +32,14 @@ public class CourseController : ControllerBase
     public async Task<IActionResult> GetByAuthor(long id, CancellationToken cancellationToken = default)
     {
         var model = await _service.GetByAuthor<CourseResponse>(id, cancellationToken);
+        return Ok(model);
+    }
+
+    [HttpGet("getMy")]
+    [ProducesResponseType(typeof(IEnumerable<CourseResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByAuthor(CancellationToken cancellationToken = default)
+    {
+        var model = await _service.GetMy<CourseResponse>(cancellationToken);
         return Ok(model);
     }
 

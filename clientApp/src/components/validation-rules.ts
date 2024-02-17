@@ -1,5 +1,5 @@
 export const rules = {
-    required: (value: any) => !!value || 'Field is required',
+    required: (value: any) => typeof(value) === 'number' && value === 0 || !!value || 'Field is required',
     email: (value: string) => emailPattern.test(value) || 'Invalid e-mail.',
 }
 

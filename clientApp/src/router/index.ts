@@ -1,3 +1,4 @@
+import { Role } from '@/models'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -6,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/components/HelloWorld.vue'),
+      component: () => import('@/components/home.vue'),
       meta: { 
         nav: true,
         title: 'Home',
@@ -16,7 +17,7 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('@/components/HelloWorld.vue'),
+      component: () => import('@/components/home.vue'),
       meta: { 
         nav: true,
         title: 'About',
@@ -58,7 +59,8 @@ const router = createRouter({
       meta: { 
         nav: true,
         title: 'Constructor',
-        icon: 'mdi-code-tags'
+        icon: 'mdi-code-tags',
+        role: Role.admin,
       },
     },
 

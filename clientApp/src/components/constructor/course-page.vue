@@ -4,6 +4,7 @@
   import { LessonStatus } from '@/models';
   import { courseService, lessonService } from '@/api/lms';
   import LessonCreateDialog from './lesson-create-dialog.vue';
+  import CourseAccessDialog from './course-access-dialog.vue';
   import LessonEditor from './lesson-editor.vue';
   import { useRoute } from 'vue-router';
 
@@ -11,6 +12,7 @@
   const loading = ref(true);
   const isEdit = ref(false);
   const visibleDialog = ref(false);
+  const visibleAccessDialog = ref(false);
   const course = ref<Course>();
   const lessons = ref<LessonListItem[]>([]);
   const selectedLessonId = ref<number>();
@@ -41,6 +43,10 @@
 
   function openCreateLessonDialog() {
     visibleDialog.value = true;
+  }
+
+  function openAccessDialog() {
+    visibleAccessDialog.value = true;
   }
 
   function editLesson(id: number) {
@@ -86,8 +92,13 @@
                 label="Description")
               h5(v-else) {{ course.description }}
 
-          v-btn(v-if="!isEdit" color="primary" @click="toggleMode") Edit
-            v-icon mdi-pencil
+          .d-flex(v-if="!isEdit")
+            v-btn.mx-2( @click="openAccessDialog" outlined) Members
+              v-icon mdi-account-multiple
+
+            v-btn( color="primary" @click="toggleMode") Edit
+              v-icon mdi-pencil
+
           .d-flex(v-else)
             v-btn.mx-2(color="success" @click="update") Save
               v-icon mdi-check-all
@@ -121,5 +132,9 @@
     LessonEditor(v-else
       :lessonId="selectedLessonId"
       @back="clearSelectedLesson")
+
+    CourseAccessDialog(v-if="course"
+      v-model="visibleAccessDialog"
+      :courseId="course.id")
 
 </template>

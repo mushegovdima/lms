@@ -47,5 +47,14 @@ internal class CourseService : EntityServiceBase<Course>, ICourseService
             .ProjectTo<TResponse>(Mapper.ConfigurationProvider)
             .ToArrayAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<TResponse>> GetMy<TResponse>(CancellationToken cancellationToken)
+    {
+        return await GetQuery()
+            .Include(x => x.AccessRoles)
+            .Where(x => x.AccessRoles.Any(x => x.UserId == User.UserId()))
+            .ProjectTo<TResponse>(Mapper.ConfigurationProvider)
+            .ToArrayAsync(cancellationToken);
+    }
 }
 

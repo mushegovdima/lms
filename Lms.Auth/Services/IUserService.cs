@@ -15,7 +15,15 @@ public interface IUserService: IEntityService<User>
     /// <param name="login"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public Task<User> GetUserByLogin(string login, CancellationToken cancellationToken = default);
+    public Task<User?> GetUserByLogin(string login, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Get user by email
+    /// </summary>
+    /// <param name="email"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<TResponse?> GetByEmail<TResponse>(string email, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Flag user is exists

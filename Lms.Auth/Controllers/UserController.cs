@@ -22,7 +22,7 @@ public class UserController : ControllerBase
 
     [HttpPost("getByIdRange")]
     [ProducesResponseType(typeof(IEnumerable<UserResponse>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ByFilter([FromBody] IEnumerable<long> ids, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetByIdRange([FromBody] IEnumerable<long> ids, CancellationToken cancellationToken = default)
     {
         var model = await _service.GetByIdRange<UserResponse>(ids, cancellationToken);
         return Ok(model);
@@ -41,6 +41,14 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Get(long id, CancellationToken cancellationToken = default)
     {
         var model = await _service.Get<UserResponse>(id, cancellationToken);
+        return model is null ? BadRequest() : Ok(model);
+    }
+
+    [HttpGet("getByEmail/{email}")]
+    [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByEmail(string email, CancellationToken cancellationToken = default)
+    {
+        var model = await _service.GetByEmail<UserResponse>(email, cancellationToken);
         return model is null ? BadRequest() : Ok(model);
     }
 

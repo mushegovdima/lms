@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Lms.Auth.Db;
 using Lms.Auth.Db.Models;
 using Lms.Auth.UserDto;
@@ -14,9 +15,17 @@ namespace Lms.Auth.Services.Impl
         {
         }
 
-        public async Task<User> GetUserByLogin(string login, CancellationToken cancellationToken = default)
+        public async Task<User?> GetUserByLogin(string login, CancellationToken cancellationToken = default)
         {
-            return await Db.Users.FirstAsync(x => x.Login == login, cancellationToken);
+            return await Db.Users.FirstOrDefaultAsync(x => x.Login == login, cancellationToken);
+        }
+
+        public Task<TResponse?> GetByEmail<TResponse>(string email, CancellationToken cancellationToken = default)
+        {
+            return GetQuery()
+                .Where(x => x.Email == email)
+                .ProjectTo<TResponse>(Mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<bool> UserExists(string login, CancellationToken cancellationToken = default)

@@ -14,4 +14,7 @@ export const courseService = {
 
     getByAuthorId: (id: number) : Promise<Course[]> =>
         lmsInstance.get(`${controllerName}/getByAuthor/${id}`).then(x => x.data),
+
+    getMy: () : Promise<Course[]> =>
+        lmsInstance.get(`${controllerName}/getMy`).then(x => x.data),
 }

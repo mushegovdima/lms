@@ -19,7 +19,7 @@ public class CourseRoleController : ControllerBase
         _service = service;
     }
 
-    [HttpPost("getByCourse/{courseId}")]
+    [HttpGet("getByCourse/{courseId}")]
     [ProducesResponseType(typeof(IEnumerable<CourseRoleResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetByCourse(long courseId, CancellationToken cancellationToken = default)
     {
