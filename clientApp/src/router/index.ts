@@ -63,6 +63,29 @@ const router = createRouter({
         role: Role.admin,
       },
     },
+    {
+      path: '/my-index',
+      name: 'my-courses-index',
+      component: () => import('@/components/student/index.vue'),
+      redirect: { name: 'my-courses' },
+      children: [
+        {
+          path: '/courses',
+          name: 'my-courses',
+          component: () => import('@/components/student/my-courses.vue')
+        },
+        {
+          path: '/courses/:courseId',
+          name: 'course-page',
+          component: () => import('@/components/student/course-page.vue')
+        },
+        {
+          path: '/courses/:courseId/lesson/:lessonId',
+          name: 'lesson-page',
+          component: () => import('@/components/student/lesson-page.vue')
+        },
+      ],
+    },
 
   ]
 })

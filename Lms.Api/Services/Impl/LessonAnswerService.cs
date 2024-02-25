@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Lms.Api.Abstract;
 using Lms.Api.Db;
 using Lms.Api.Db.Models;
@@ -31,6 +32,14 @@ internal class LessonAnswerService : EntityServiceBase<LessonAnswer>, ILessonAns
         where TResponse : IResponse
     {
         return await filter.GetResponse(GetQuery(), Mapper, cancellationToken);
+    }
+
+    public async Task<TResponse?> GetByLessonId<TResponse>(long lessonId, long authorId, CancellationToken cancellationToken) where TResponse : IResponse
+    {
+        return await GetQuery()
+            .Where(x => x.LessonId == lessonId && x.AuthorId == authorId)
+            .ProjectTo<TResponse>(Mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public override Task<long> Create(LessonAnswer entity, CancellationToken cancellationToken = default)

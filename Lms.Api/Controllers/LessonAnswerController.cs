@@ -31,6 +31,14 @@ public class LessonAnswerController : ControllerBase
         return Ok(model);
     }
 
+    [HttpGet("getByLessonId/{id}/{authorId}")]
+    [ProducesResponseType(typeof(LessonAnswerResponse), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByLessonId(long id, long authorId, CancellationToken cancellationToken = default)
+    {
+        var model = await _service.GetByLessonId<LessonAnswerResponse>(id, authorId, cancellationToken);
+        return Ok(model);
+    }
+
     [HttpGet("getByFilter")]
     [ProducesResponseType(typeof(IFilterResponse<LessonListItemResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetByCourse([FromQuery] LessonAnswerFilter filter, CancellationToken cancellationToken = default)
@@ -52,16 +60,6 @@ public class LessonAnswerController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
     public async Task<IActionResult> Post([FromBody] LessonAnswerPostRequest request, CancellationToken cancellationToken = default)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        var result = await _service.Create(request, cancellationToken);
-        return Ok(result);
-    }
-
-    [HttpPost("saveAsDraft")]
-    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
-    public async Task<IActionResult> SaveAsDraft([FromBody] LessonAnswerPostAsDraftRequest request, CancellationToken cancellationToken = default)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 

@@ -50,6 +50,22 @@ export interface CourseRolePostRequest {
     role: Role;
 }
 
+export interface LessonAnswerRequest {
+    lessonId: number;
+    checkerId: number | null;
+    data: Record<number, any>;
+}
+
+export interface LessonAnswer {
+    id: number;
+    status: LessonAnswerStatus;
+    lessonId: number;
+    createdAt: string;
+    lastStatusDate: string;
+    checkerId: number | null;
+    data: Record<number, any>;
+}
+
 /** enums */
 
 export enum LessonStatus {
@@ -69,4 +85,11 @@ export enum Role
     admin = 1,
     checker = 2,
     student = 3,
+}
+
+export enum LessonAnswerStatus {
+    Draft = 0,
+    Send = 1,
+    Successfull = 2,
+    Cancelled = 3
 }

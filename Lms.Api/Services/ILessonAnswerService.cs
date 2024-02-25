@@ -20,6 +20,18 @@ public interface ILessonAnswerService : IEntityService<LessonAnswer>
     public Task<IFilterResponse<TResponse>> GetByFilter<TResponse>(BaseFilter<LessonAnswer,TResponse> filter, CancellationToken cancellationToken)
         where TResponse : IResponse;
 
+
+    /// <summary>
+    /// Get by lesson id
+    /// </summary>
+    /// <typeparam name="TResponse"></typeparam>
+    /// <param name="lessonId"></param>
+    /// <param name="authorId"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<TResponse?> GetByLessonId<TResponse>(long lessonId, long authorId, CancellationToken cancellationToken)
+        where TResponse : IResponse;
+
     /// <summary>
     /// Send to check
     /// </summary>

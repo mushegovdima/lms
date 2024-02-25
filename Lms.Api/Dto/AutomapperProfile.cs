@@ -29,8 +29,6 @@ namespace Lms.Api.Dto
             CreateMap<LessonAnswer, LessonAnswerResponse>();
             CreateMap<LessonAnswer, LessonAnswerListItemResponse>();
             CreateMap<LessonAnswerPostRequest, LessonAnswer>()
-                .AfterMap((dto, res) => res.Status = LessonAnswerStatus.Send);
-            CreateMap<LessonAnswerPostAsDraftRequest, LessonAnswer>()
                 .AfterMap((dto, res) => res.Status = LessonAnswerStatus.Draft);
         }
     }

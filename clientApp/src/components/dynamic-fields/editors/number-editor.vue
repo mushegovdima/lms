@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { PropType } from 'vue';
-import { LessonField } from '../../models';
+import type { LessonField } from '@/models';
 import { rules } from '@/components/validation-rules';
+import type { PropType } from 'vue';
 
 const value = defineModel();
 const props = defineProps({
@@ -14,9 +14,8 @@ const props = defineProps({
 
 <template lang="pug">
     v-text-field(v-model="value"
-        :label="props.field.title"
+        :placeholder="props.field.title"
         type="number"
-        :hint="props.field.description"
         :rules="required || props.required ? [ rules.required ] : []"
         :readonly="props.readonly"
         clearable)

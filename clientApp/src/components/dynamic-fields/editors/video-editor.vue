@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { PropType } from 'vue';
-import { LessonField } from '../../models';
+import type { PropType } from 'vue';
 import { rules } from '@/components/validation-rules';
+import type { LessonField } from '@/models';
 
 const value = defineModel();
 const props = defineProps({

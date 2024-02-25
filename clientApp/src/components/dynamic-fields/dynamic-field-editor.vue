@@ -1,6 +1,6 @@
 <script lang="ts">
-import { PropType } from 'vue'
-import { LessonField, FieldType } from '../../models/lms';
+import { h, type PropType } from 'vue';
+import { type LessonField, FieldType } from '@/models';
 import NumberEditor from './editors/number-editor.vue';
 import StringEditor from './editors/string-editor.vue';
 import TextEditor from './editors/text-editor.vue';
@@ -16,24 +16,10 @@ function getComponent(field: LessonField) {
     }
 }
 
-export default {
-    functional: true,
-    props: {
-        value: { required: true },
-        required: { type: Boolean, default: false },
-        readonly: { type: Boolean, default: false },
-        field: { type: Object as PropType<LessonField>, required: true },
-    },
-    render(h, ctx) {
-      return h(
-        getComponent(ctx.props.field), 
-        {
-            props: { 
-                ...ctx.props,
-                ...ctx.data.attr
-            },
-            on: ctx.listeners,
-        })
-    }
+const DynamicFieldEditor = (props, context) => {
+  return h(getComponent(props.field), context.attrs, context.slots)
 }
+
+export default DynamicFieldEditor;
+
 </script>

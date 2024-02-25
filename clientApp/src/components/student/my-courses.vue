@@ -36,6 +36,6 @@
           v-card-actions
             .mx-1 Lessons: {{ item.lessonsCount }}
             v-spacer
-            v-btn Open
+            v-btn(:to="{ name: 'course-page', params: { courseId: item.id } }") Open
 
 </template>
