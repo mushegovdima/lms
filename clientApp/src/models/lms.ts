@@ -27,6 +27,7 @@ export interface LessonField extends Entity {
     type: FieldType;
     position: number;
     lessonId: number;
+    data: any;
 }
 
 export interface LessonPostRequest {
@@ -64,6 +65,12 @@ export interface LessonAnswer {
     lastStatusDate: string;
     checkerId: number | null;
     data: Record<number, any>;
+}
+
+/** dynamic fields */
+
+export interface VideoConfig {
+    url: string;
 }
 
 /** enums */

@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import type { LessonField } from '@/models';
 import { fieldTypeItems } from '../helpers';
 import { rules } from '../validation-rules';
+import DynamicFieldConfig from '@/components/dynamic-fields/dynamic-field-config.vue'
 
-const field = defineModel();
+const field = defineModel<LessonField>();
+
+function updateData(data: any) {
+  if (!field.value) return;
+  field.value.data = data;
+}
 
 </script>
 
@@ -20,5 +27,7 @@ const field = defineModel();
         label="Type"
         :rules="[ rules.required ]")
       v-switch.mx-2(v-model="field.required" color="primary" label="Required")
+    v-row
+      DynamicFieldConfig(:field="field" @updated="updateData")
 
 </template>

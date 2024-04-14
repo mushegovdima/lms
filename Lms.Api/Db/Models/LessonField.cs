@@ -1,4 +1,6 @@
-﻿using Lms.SDK.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
+using Lms.SDK.Enums;
 using Lms.SDK.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -14,6 +16,10 @@ public class LessonField : Entity, ILessonField, IEntityTypeConfiguration<Lesson
     public uint Position { get; set; }
     public required string Title { get; set; }
     public Lesson? Lesson { get; set; }
+
+    [Column(TypeName = "jsonb")]
+    public ExpandoObject? Data { get; set; } = new ExpandoObject();
+
 
     public void Configure(EntityTypeBuilder<LessonField> builder)
     {

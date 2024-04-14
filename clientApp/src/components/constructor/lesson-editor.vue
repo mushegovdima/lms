@@ -30,6 +30,7 @@
       type: FieldType.string,
       position: lesson.value?.fields.length + 1,
       lessonId: props.lessonId,
+      data: {},
     })
   }
 
