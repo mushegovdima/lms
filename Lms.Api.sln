@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.SDK", "Lms.SDK\Lms.SDK.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Auth", "Lms.Auth\Lms.Auth.csproj", "{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Api.Tests", "Lms.Api.Tests\Lms.Api.Tests.csproj", "{200FEF2A-D0D8-480F-BAB0-C2B5041CD298}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3053548-6133-4D6C-ADBF-FF3DC7ACADC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{200FEF2A-D0D8-480F-BAB0-C2B5041CD298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{200FEF2A-D0D8-480F-BAB0-C2B5041CD298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{200FEF2A-D0D8-480F-BAB0-C2B5041CD298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{200FEF2A-D0D8-480F-BAB0-C2B5041CD298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

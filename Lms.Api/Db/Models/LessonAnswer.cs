@@ -10,7 +10,7 @@ public class LessonAnswer : Entity, ILessonAnswer<Lesson, Course, LessonField>
 {
     public LessonAnswerStatus Status { get; set; }
     public long LessonId { get; set; }
-    public required Lesson Lesson { get; set; }
+    public Lesson Lesson { get; set; }
     public required long AuthorId { get; set; }
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset LastStatusDate { get; set; } = DateTimeOffset.UtcNow;

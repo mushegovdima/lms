@@ -17,7 +17,7 @@ public static class ClaimsExtensions
 
     public static bool IsAdmin(this ClaimsPrincipal user)
     {
-        var str = user.FindFirstValue(ClaimTypes.NameIdentifier);
+        var str = user.FindFirstValue("IsAdmin");
         return !bool.TryParse(str, out var result) || result;
     }
 

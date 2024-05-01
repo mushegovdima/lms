@@ -71,7 +71,7 @@ internal class LessonAnswerService : EntityServiceBase<LessonAnswer>, ILessonAns
     /// <param name="entity"></param>
     /// <param name="status"></param>
     /// <returns></returns>
-    private async Task<bool> CanChangeStatus(LessonAnswer entity,  LessonAnswerStatus status)
+    internal async Task<bool> CanChangeStatus(LessonAnswer entity,  LessonAnswerStatus status)
     {
         if (status == entity.Status) return false;
 
